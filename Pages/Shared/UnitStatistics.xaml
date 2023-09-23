@@ -1,0 +1,85 @@
+﻿<Page x:Class="eNote_desk.Pages.Shared.UnitStatistics"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:eNote_desk.Pages.Shared"
+      mc:Ignorable="d" 
+      d:DesignHeight="550" d:DesignWidth="800"
+      Title="Графики">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="#232331">
+            <TextBlock FontSize="30" TextAlignment="Center" Text="Статистика" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White"></TextBlock>
+        </Grid>
+
+        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="200"/>
+                    <RowDefinition Height="200"/>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <WpfPlot Grid.Column="0" Name="plotRoundTasks"/>
+                    <WpfPlot Grid.Column="1" Name="plotLinearTaskAccounts"/>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <WpfPlot Name="plotLinearCompleteTasks"/>
+                </Grid>
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <TextBlock Text="Выполнено задач:  " VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding UnitStatsDTO.Completed}" FontSize="20" Foreground="#6CA103"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <TextBlock Text="Провалено задач:  " VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding UnitStatsDTO.Failed}" FontSize="20" Foreground="#903131"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <TextBlock Text="Задач в работе:  " VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding UnitStatsDTO.InWork}" FontSize="20" Foreground="#45455D"/>
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Row="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <TextBlock Text="Выполнено/Провалено:  " VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding UnitStatsDTO.Effectivency}" FontSize="20" Foreground="#45455D"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <TextBlock Text="Средняя скорость:  " VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding UnitStatsDTO.Speed}" FontSize="20" Foreground="#45455D"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <TextBlock Text="Выполнено за неделю:  " VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding UnitStatsDTO.Week}" FontSize="20" Foreground="#6CA103"/>
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Row="4">
+
+                </Grid>
+            </Grid>
+        </ScrollViewer>
+        <Grid Grid.Row="2" Background="#232331"/>
+    </Grid>
+</Page>

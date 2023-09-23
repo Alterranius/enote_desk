@@ -1,0 +1,199 @@
+﻿<Window x:Class="eNote_desk.Wins.TaskDetails"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:eNote_desk.Wins"
+        mc:Ignorable="d"
+        Title="Сведения о задаче" Height="800" Width="800" MinHeight="800" MinWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="20"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid Background="#232331" Grid.Row="0">
+            <TextBlock Foreground="White" FontSize="30" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Задача" Width="400"></TextBlock>
+        </Grid>
+
+        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="250"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Vertical" Grid.Column="0">
+                    <StackPanel Orientation="Vertical" Margin="15">
+                        <TextBlock Margin="0 0 0 10" Text="Название"></TextBlock>
+                        <TextBox Text="{Binding SelectedTask.Name, ValidatesOnDataErrors=True}" VerticalContentAlignment="Top" Margin="0 0 0 10" Height="140" TextWrapping="Wrap" HorizontalAlignment="Left" Name="tbName">
+                            <TextBox.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="9"/>
+                                </Style>
+                            </TextBox.Resources>
+                        </TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Margin="15">
+                        <TextBlock Margin="0 0 0 10" Text="Кодификатор"></TextBlock>
+                        <TextBox Text="{Binding SelectedTask.Code, ValidatesOnDataErrors=True}" Margin="0 0 0 10" HorizontalAlignment="Left" Name="tbCode">
+                            <TextBox.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="9"/>
+                                </Style>
+                            </TextBox.Resources>
+                        </TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Margin="15">
+                        <TextBlock Margin="0 0 0 10" Text="Приоритет"></TextBlock>
+                        <TextBox Text="{Binding SelectedTask.Id, ValidatesOnDataErrors=True}" Margin="0 0 0 10" HorizontalAlignment="Left" Name="tbPriority">
+                            <TextBox.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="9"/>
+                                </Style>
+                            </TextBox.Resources>
+                        </TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Margin="15">
+                        <TextBlock Margin="0 0 0 10" Text="Категория"></TextBlock>
+                        <ComboBox Template="{DynamicResource ComboBasic}" ItemsSource="{Binding CategoriesCmb}" DisplayMemberPath="Name" SelectedItem="{Binding SelectedTask.TaskCategory, Mode=TwoWay, ValidatesOnDataErrors=True}" Width="180" Height="35" Margin="0 0 0 10" HorizontalAlignment="Left" Name="cbCategory"></ComboBox>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Grid.Column="1">
+                    <StackPanel Grid.Column="1" Orientation="Vertical" Margin="15">
+                        <TextBlock Margin="0 0 0 10" Text="Описание"></TextBlock>
+                        <TextBox Text="{Binding SelectedTask.Description, ValidatesOnDataErrors=True}" Margin="0 0 0 10" Height="244" Width="450" HorizontalAlignment="Left"  TextWrapping="Wrap" VerticalContentAlignment="Top" HorizontalContentAlignment="Left" Name="tbAbout">
+                            <TextBox.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="9"/>
+                                </Style>
+                            </TextBox.Resources>
+                        </TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Vertical" Margin="15">
+                            <TextBlock Margin="0 0 0 10" Text="Команда"></TextBlock>
+                            <ComboBox Template="{DynamicResource ComboBasic}" ItemsSource="{Binding TeamsCmb}" DisplayMemberPath="Name" SelectedItem="{Binding SelectedTask.Team, Mode=TwoWay, ValidatesOnDataErrors=True}" Width="180" Height="35" Margin="0 0 0 10" HorizontalAlignment="Left" Name="cbTeam"></ComboBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Margin="15">
+                            <TextBlock Margin="0 0 0 10" Text="Аккаунт"></TextBlock>
+                            <ComboBox Template="{DynamicResource ComboBasic}" ItemsSource="{Binding AccountsCmb}" DisplayMemberPath="Nickname" SelectedItem="{Binding SelectedTask.Account, Mode=TwoWay, ValidatesOnDataErrors=True}" Width="180" Height="35" Margin="0 0 0 10" HorizontalAlignment="Left" Name="cbAccount"></ComboBox>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Vertical" Margin="15">
+                            <TextBlock Margin="0 0 0 10" Text="Статус"></TextBlock>
+                            <ComboBox Template="{DynamicResource ComboBasic}" ItemsSource="{Binding StatusCmb}" DisplayMemberPath="Name" SelectedItem="{Binding SelectedTask.TaskStatus, Mode=TwoWay, ValidatesOnDataErrors=True}" Width="180" Height="35" Margin="0 0 0 10" HorizontalAlignment="Left" Name="cbStatus"></ComboBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Margin="15">
+                            <TextBlock Margin="0 0 0 10" Text="Тип"></TextBlock>
+                            <ComboBox Template="{DynamicResource ComboBasic}" ItemsSource="{Binding TypesCmb}" DisplayMemberPath="Name" SelectedItem="{Binding SelectedTask.TaskType, Mode=TwoWay, ValidatesOnDataErrors=True}" Width="180" Height="35" Margin="0 0 0 10" HorizontalAlignment="Left" Name="cbType"></ComboBox>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
+        <GridSplitter Grid.Row="2"
+                      ShowsPreview="False"
+                      Height="2"
+                      Grid.ColumnSpan="2"
+                      HorizontalAlignment="Stretch"
+                      VerticalAlignment="Center"/>
+        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible" Grid.Row="3">
+            <StackPanel Margin="5">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"></RowDefinition>
+                        <RowDefinition Height="50"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Margin="5" FontSize="30" TextAlignment="Center" Text="Комментарии" Width="400" Height="40"></TextBlock>
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBox Text="{Binding Content, ValidatesOnDataErrors=True}" Name="tbComment" Margin="0 0 10 0" Width="450"></TextBox>
+                        <Button Template="{DynamicResource CasualButton}" Command="{Binding PostCommentAddClick}" Name="btnComment" Width="100" Height="30" Content="Отправить">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="6"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                    </StackPanel>
+                    <Grid Grid.Row="2">
+                        <ListView ItemsSource="{Binding Comments, Mode=TwoWay}" Name="lvComments" Height="auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                            <ListView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel Orientation="Vertical" HorizontalAlignment="Left">
+                                    </WrapPanel>
+                                </ItemsPanelTemplate>
+                            </ListView.ItemsPanel>
+
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Margin="0,20" Grid.Row="5"  CornerRadius="10" BorderBrush="Black" BorderThickness="2">
+                                        <Grid Margin="10,0">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="50"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="{Binding Account.Name}" 
+                        TextWrapping="Wrap" FontSize="16"
+                        HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10"/>
+
+                                                <TextBlock Text="{Binding CreatedAt}" 
+                        TextWrapping="Wrap" FontSize="12" Foreground="#FF2A2A2A"
+                        HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10"/>
+                                            </StackPanel>
+
+                                            <TextBlock Grid.Row="1" Foreground="Black" Text="{Binding Content}" 
+                        TextWrapping="Wrap"  FontSize="14"
+                        HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,20,0,20"/>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </Grid>
+                </Grid>
+            </StackPanel>
+        </ScrollViewer>
+        <Grid Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="20"/>
+
+            </Grid.ColumnDefinitions>
+            <Button Template="{DynamicResource CasualButton}" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Name="btnBack" Width="40" Height="40" Content="←" FontWeight="ExtraBold" Click="btnBack_Click" >
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="6"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button Template="{DynamicResource DeclineButton}" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#903131" Name="btnDelete" Width="40" Height="40" Content="—" FontWeight="ExtraBold">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="6"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button Template="{DynamicResource AcceptButton}" Grid.Column="6" HorizontalAlignment="Center" Background="#6CA103" VerticalAlignment="Center" Name="btnAdd" Width="40" Height="40" Content="✔" >
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="6"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </Grid>
+        <Grid Grid.Row="5" Background="#232331"/>
+    </Grid>
+</Window>

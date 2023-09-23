@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29519.181
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eNote_desk", "eNote_desk.csproj", "{9F95286F-9779-46BC-8D76-EE2A6EEA63F6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9F95286F-9779-46BC-8D76-EE2A6EEA63F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F95286F-9779-46BC-8D76-EE2A6EEA63F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F95286F-9779-46BC-8D76-EE2A6EEA63F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F95286F-9779-46BC-8D76-EE2A6EEA63F6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8A91FE0F-B960-437C-B268-D2327586730A}
+	EndGlobalSection
+EndGlobal

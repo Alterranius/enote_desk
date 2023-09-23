@@ -1,0 +1,127 @@
+﻿<Page x:Class="eNote_desk.Pages.Projects.OrganisationDetails"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:eNote_desk.Pages.Projects"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="OrganisationDetails">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="20"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Background="#232331">
+            <TextBlock FontSize="30" VerticalAlignment="Center" TextAlignment="Center" Foreground="White" Text="Проект"></TextBlock>
+        </Grid>
+
+        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="250"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Vertical" Grid.Column="0">
+                    <StackPanel Orientation="Vertical" Margin="15">
+                        <TextBlock Margin="0 0 0 10" Text="Название"></TextBlock>
+                        <TextBox Text="{Binding SelectedProject.Name}" VerticalContentAlignment="Top"  Margin="0 0 0 10" Height="140" TextWrapping="Wrap" HorizontalAlignment="Left" Name="tbName">
+                            <TextBox.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="9"/>
+                                </Style>
+                            </TextBox.Resources>
+                        </TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Margin="15">
+                        <TextBlock Margin="0 0 0 10" Text="Префикс"></TextBlock>
+                        <TextBox Text="{Binding SelectedProject.Prefix}" Margin="0 0 0 10" HorizontalAlignment="Left" Name="tbPrefix">
+                            <TextBox.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="9"/>
+                                </Style>
+                            </TextBox.Resources>
+                        </TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Margin="15">
+                        <TextBlock Margin="0 0 0 10" Text="Направление"></TextBlock>
+                        <TextBox Text="{Binding SelectedProject.Specialization}" Margin="0 0 0 10" HorizontalAlignment="Left" Name="tbSpecialization">
+                            <TextBox.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="9"/>
+                                </Style>
+                            </TextBox.Resources>
+                        </TextBox>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Grid.Column="1">
+                    <StackPanel Grid.Column="1" Orientation="Vertical" Margin="15">
+                        <TextBlock Margin="0 0 0 10" Text="Дедлайн"></TextBlock>
+                        <DatePicker SelectedDate="{Binding SelectedProject.Deadline}" FontFamily="Georgia" Margin="0 0 0 10" Height="50" Width="350" HorizontalAlignment="Left" VerticalContentAlignment="Top" HorizontalContentAlignment="Left" Name="dpDeadline"></DatePicker>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Orientation="Vertical" Margin="15 7 15 8">
+                        <TextBlock Margin="0 0 0 10" Text="Крайний срок"></TextBlock>
+                        <DatePicker SelectedDate="{Binding SelectedProject.HardDeadline}" FontFamily="Georgia" Margin="0 0 0 10" Height="50" Width="350" HorizontalAlignment="Left" VerticalContentAlignment="Top" HorizontalContentAlignment="Left" Name="dpHardDeadline"></DatePicker>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Margin="15 0 15 15">
+                        <TextBlock Margin="0 0 0 10" Text="Методология"></TextBlock>
+                        <ComboBox Template="{DynamicResource ComboBasic}" SelectedItem="{Binding SelectedProject.Methodology, Mode=TwoWay}" ItemsSource="{Binding MethodologiesCmb}" DisplayMemberPath="Name" Width="180" Height="35" Margin="0 0 0 10" HorizontalAlignment="Left" Name="cbMethodology"></ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Vertical" Margin="15">
+                            <TextBlock Margin="0 0 0 10" Text="Миссия"></TextBlock>
+                            <TextBox Text="{Binding SelectedProject.Mission}" Width="180" Height="35" Margin="0 0 0 10" HorizontalAlignment="Left" Name="tbMission">
+                                <TextBox.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" Value="9"/>
+                                    </Style>
+                                </TextBox.Resources>
+                            </TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Margin="15">
+                            <TextBlock Margin="0 0 0 10" Text="Продукт"></TextBlock>
+                            <TextBox Text="{Binding SelectedProject.Product}" Width="180" Height="35" Margin="0 0 0 10" HorizontalAlignment="Left" Name="tbProduct">
+                                <TextBox.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" Value="9"/>
+                                    </Style>
+                                </TextBox.Resources>
+                            </TextBox>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="20"/>
+
+            </Grid.ColumnDefinitions>
+            <Button Template="{DynamicResource DeclineButton}" Click="btnDelete_Click" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#903131" Name="btnDelete" Width="40" Height="40" Content="—" FontWeight="ExtraBold">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="6"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button Template="{DynamicResource AcceptButton}" Command="{Binding PutProjectUpdateClick}" CommandParameter="{Binding SelectedProject}" Grid.Column="6" HorizontalAlignment="Center" Background="#6CA103" VerticalAlignment="Center" Name="btnAdd" Width="40" Height="40" Content="✔" >
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="6"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </Grid>
+        <Grid Grid.Row="4" Background="#232331"/>
+    </Grid>
+</Page>
