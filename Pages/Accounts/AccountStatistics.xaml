@@ -1,0 +1,74 @@
+﻿<Page x:Class="eNote_desk.Pages.Accounts.AccountStatistics"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:eNote_desk.Pages.Accounts"
+      mc:Ignorable="d" 
+      d:DesignHeight="550" d:DesignWidth="800"
+      Title="Личная статистика">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="#232331">
+            <TextBlock FontSize="30" TextAlignment="Center" Foreground="White" Text="Личная статистика" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+        </Grid>
+
+        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="200"/>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="100"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <WpfPlot Grid.Column="0" Name="plotRoundTasks"/>
+                    <WpfPlot Grid.Column="1" Name="plotLinearTasks"/>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <TextBlock Text="Выполнено задач:  " VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding AccountStatsDTO.Completed}" FontSize="20" Foreground="#6CA103"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <TextBlock Text="Провалено задач:  " VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding AccountStatsDTO.Failed}" FontSize="20" Foreground="#903131"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <TextBlock Text="Задач в работе:  " VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding AccountStatsDTO.InWork}" FontSize="20" Foreground="#45455D"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <TextBlock Text="Эффективность:  " VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding AccountStatsDTO.Effectivency}" FontSize="20" Foreground="#6CA103"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <TextBlock Text="Скорость:  " VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding AccountStatsDTO.Speed}" FontSize="20" Foreground="#45455D"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <TextBlock Text="Выполнено поручений:  " VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding AccountStatsDTO.DelegationsCompleted}" FontSize="20" Foreground="#6CA103"/>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </ScrollViewer>
+        <Grid Grid.Row="2" Background="#232331"/>
+    </Grid>
+</Page>

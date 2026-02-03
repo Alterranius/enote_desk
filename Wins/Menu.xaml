@@ -1,0 +1,285 @@
+﻿<Window x:Class="eNote_desk.Wins.Menu"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:eNote_desk.Wins"
+        mc:Ignorable="d"
+        Title="E-NOTe - Главное меню" 
+        Height="800" 
+        Width="1100" 
+        MinHeight="800" 
+        MinWidth="1100"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None">
+    <Window.Resources>
+        <Style x:Key="MenuButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#45455D"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Margin" Value="0 40 0 40"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Template" Value="{StaticResource MenuButton}"/>
+        </Style>
+        <Style x:Key="TabItemStyle" TargetType="TabItem">
+            <Setter Property="Background" Value="#232331"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="BorderBrush" Value="#232331"/>
+            <Setter Property="Padding" Value="10 5"/>
+            <Setter Property="Width" Value="270"/>
+            <Setter Property="Height" Value="70"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="Light"/>
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TabItem">
+                        <Grid SnapsToDevicePixels="True">
+                            <Border CornerRadius="5"
+                                    Background="#45455D"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    Margin="{TemplateBinding Margin}"/>
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"
+                                              SnapsToDevicePixels="True"
+                                              RecognizesAccessKey="True"
+                                              ContentSource="Header"
+                                              Margin="{TemplateBinding Margin}"
+                                              Focusable="True"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#232331"/>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="#45455D"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+    </Window.Resources>
+    <Grid Background="#232331">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="#232331">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="50"/>
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column="0" Width="50" Height="50" HorizontalAlignment="Left" Source="eNote_logo.png"/>
+            <Button Template="{DynamicResource CasualButton}" Grid.Column="1" Width="40" Height="40" FontSize="23" HorizontalAlignment="Center" VerticalAlignment="Center" Content="?" Foreground="White">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="100"/>
+                    </Style>
+                </Button.Resources>
+                <Button.ToolTip>
+                    <WrapPanel Orientation="Vertical">
+                        <TextBlock Text="Данная программа предназначена для управления рабочими задачами IT-отдела при выполнении проекта."/>
+                        <TextBlock Text="Она предоставляет полный функционал для проведения task-менеджмента"/>
+                        <TextBlock Text="и позволяет осуществлять контроль над ходом работы в команде"/>
+                    </WrapPanel>
+                </Button.ToolTip>
+            </Button>
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal" Grid.Column="2">
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Width="auto" Margin="0 0 10 0" FontSize="16" Name="tProject" Text="{Binding Path=Project.Name}" Foreground="White"/>
+                <Button Template="{DynamicResource CasualButton}" Margin="10 0 10 0" Width="25" Height="25" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center" Content="i" Foreground="White">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="100"/>
+                        </Style>
+                    </Button.Resources>
+                    <Button.ToolTip>
+                        <TextBlock Text="Название проекта"/>
+                    </Button.ToolTip>
+                </Button>
+            </StackPanel>
+            <TextBlock Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Center" Width="auto" Margin="0 0 50 0" FontSize="18" Name="tName" Text="{Binding Path=Name}" Foreground="White"/>
+            <ComboBox Template="{DynamicResource ComboBasic}" IsReadOnly="True" IsEditable="False" Grid.Column="4" Width="40" Height="40" FontSize="23" HorizontalAlignment="Center" VerticalAlignment="Center" Text="▼" Foreground="White">
+                <ComboBox.Background>
+                    <ImageBrush ImageSource="img_setting.png" Stretch="None" />
+                </ComboBox.Background>
+                <ComboBoxItem>
+                    <StackPanel Background="#45455D">
+                        <Button Style="{DynamicResource MenuButtonStyle}" Name="btnAccountStat" Width="170" Height="30" Margin="0 5" Content="Личная статистика" Click="btnAccountStat_Click"/>
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <StackPanel Background="#45455D">
+                        <Button Style="{DynamicResource MenuButtonStyle}" Name="btnAddProject" Width="170" Height="30" Margin="0 5" Content="Новый проект" Click="btnAddProject_Click"/>
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <StackPanel Background="#45455D">
+                        <Button Style="{DynamicResource MenuButtonStyle}" Name="btnMyProjects" Width="170" Height="30" Margin="0 5" Content="Мои проекты" Click="btnMyProjects_Click"/>
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <StackPanel Background="#45455D">
+                        <Button Style="{DynamicResource MenuButtonStyle}" Name="btnInvites" Width="170" Height="30" Margin="0 5" Content="Приглашения" Click="btnInvites_Click"/>
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <StackPanel Background="#45455D">
+                        <Button Style="{DynamicResource MenuButtonStyle}" Name="btnAccount" Width="170" Height="30" Margin="0 5" Content="Аккаунт" Click="btnAccount_Click"/>
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <StackPanel Background="#45455D">
+                        <Button Style="{DynamicResource MenuButtonStyle}" Name="btnSecurity" Width="170" Height="30" Margin="0 5" Content="Безопасность" Click="btnSecurity_Click"/>
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <StackPanel Background="#45455D">
+                        <Button Style="{DynamicResource MenuButtonStyle}" Name="btnExit" Width="170" Height="30" Margin="0 5" Content="Выйти" Click="btnExit_Click"/>
+                    </StackPanel>
+                </ComboBoxItem>
+            </ComboBox>
+        </Grid>
+        <TabControl Padding="0" BorderBrush="Transparent" Grid.Row="1" Width="auto" HorizontalAlignment="Center">
+            <TabItem Style="{DynamicResource TabItemStyle}" Name="iMyTasks">
+                <TabItem.Header>
+                    <TextBlock Text="Задачи" FontSize="20"></TextBlock>
+                </TabItem.Header>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="140"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Background="#232331" Grid.Column="0">
+                        <StackPanel Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top">
+                            <Button Name="btnMyTasks"
+                            Style="{DynamicResource MenuButtonStyle}"
+                            Content="Мои задачи" Click="btnMyTasks_Click"/>
+                            <Button Name="btnTasks"
+                            Style="{DynamicResource MenuButtonStyle}"
+                            Content="Управление" Click="btnTasks_Click"/>
+                            <Button Name="btnTasksInWork"
+                            Style="{DynamicResource MenuButtonStyle}"
+                            Content="В работе" Click="btnTasksInWork_Click"/>
+                            <Button Name="btnTasksUnsigned"
+                            Style="{DynamicResource MenuButtonStyle}"
+                            Content="Неназначенные" Click="btnTasksUnsigned_Click"/>
+                            <Button Name="btnTaskHistory"
+                            Style="{DynamicResource MenuButtonStyle}"
+                            Content="История задач" Click="btnTaskHistory_Click"/>
+                        </StackPanel>
+                    </Grid>
+                    <Frame Grid.Column="1" Name="TasksFrame" Source="/eNote_desk;component/Pages/Shared/Default.xaml" NavigationUIVisibility="Hidden"/>
+                </Grid>
+                
+            </TabItem>
+            <TabItem Style="{DynamicResource TabItemStyle}" Height="70" Width="270">
+                <TabItem.Header>
+                    <TextBlock TextAlignment="Center" Text="Команды" FontSize="20"></TextBlock>
+                </TabItem.Header>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="140"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Background="#232331" Grid.Column="0">
+                        <StackPanel Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top">
+                            <Button Name="btnTeams"
+                            Style="{DynamicResource MenuButtonStyle}"
+                            Content="Управление" Click="btnTeams_Click"/>
+                            <Button Name="btnTeamMembers"
+                            Style="{DynamicResource MenuButtonStyle}"
+                            Content="Состав" Click="btnTeamMembers_Click"/>
+                            <Button Name="btnTeamData"
+                            Style="{DynamicResource MenuButtonStyle}"
+                            Content="Детали команд" Click="btnTeamData_Click"/>
+                            <Button Name="btnDelegations"
+                            Style="{DynamicResource MenuButtonStyle}"
+                            Content="Поручения" Click="btnDelegations_Click"/>
+                            <Button Name="btnTeamStatistics"
+                            Style="{DynamicResource MenuButtonStyle}"
+                            Content="Статистика" Click="btnTeamStatistics_Click"/>
+                        </StackPanel>
+                    </Grid>
+                    <Frame Grid.Column="1" Name="TeamsFrame" Source="/eNote_desk;component/Pages/Shared/Default.xaml" NavigationUIVisibility="Hidden"/>
+                </Grid>
+            </TabItem>
+            <TabItem Style="{DynamicResource TabItemStyle}" Height="70" Width="270">
+                <TabItem.Header>
+                    <TextBlock TextAlignment="Center" Text="Отделы" FontSize="20"></TextBlock>
+                </TabItem.Header>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="140"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Background="#232331" Grid.Column="0">
+                        <StackPanel Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top">
+                            <Button Name="btnDeparts"
+                            Style="{DynamicResource MenuButtonStyle}"
+                            Content="Управление" Click="btnDeparts_Click"/>
+                            <Button Name="btnDepartMembers"
+                            Style="{DynamicResource MenuButtonStyle}"
+                            Content="Состав" Click="btnDepartMembers_Click"/>
+                            <Button Name="btnDepartData"
+                            Style="{DynamicResource MenuButtonStyle}"
+                            Content="Детали отделов" Click="btnDepartData_Click"/>
+                            <Button Name="btnDepartPlans"
+                            Style="{DynamicResource MenuButtonStyle}"
+                            Content="Планы" Click="btnDepartPlans_Click"/>
+                            <Button Name="btnDepartStatistics"
+                            Style="{DynamicResource MenuButtonStyle}"
+                            Content="Статистика" Click="btnDepartStatistics_Click"/>
+                        </StackPanel>
+                    </Grid>
+                    <Frame Grid.Column="1" Name="DepartsFrame" Source="/eNote_desk;component/Pages/Shared/Default.xaml" NavigationUIVisibility="Hidden"/>
+                </Grid>
+            </TabItem>
+            
+            <TabItem Style="{DynamicResource TabItemStyle}" Height="70" Width="270">
+                <TabItem.Header>
+                    <TextBlock TextAlignment="Center" Text="Организации" FontSize="20"></TextBlock>
+                </TabItem.Header>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="140"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Background="#232331" Grid.Column="0">
+                        <StackPanel Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top">
+                            <Button Name="btnProjects"
+                            Style="{DynamicResource MenuButtonStyle}"
+                            Content="Управление" Click="btnProjects_Click"/>
+                            <Button Name="btnProjectMembers"
+                            Style="{DynamicResource MenuButtonStyle}"
+                            Content="Участники" Click="btnProjectMembers_Click"/>
+                            <Button Name="btnAppeals"
+                            Style="{DynamicResource MenuButtonStyle}"
+                            Content="Обращения" Click="btnAppeals_Click"/>
+                            <Button Name="btnProjectPlans"
+                            Style="{DynamicResource MenuButtonStyle}"
+                            Content="Планы" Click="btnProjectPlans_Click"/>
+                            <Button Name="btnProjectStatistics"
+                            Style="{DynamicResource MenuButtonStyle}"
+                            Content="Статистика" Click="btnProjectStatistics_Click"/>
+                        </StackPanel>
+                    </Grid>
+
+                    <Frame Grid.Column="1" Name="ProjectsFrame" Source="/eNote_desk;component/Pages/Shared/Default.xaml" NavigationUIVisibility="Hidden"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

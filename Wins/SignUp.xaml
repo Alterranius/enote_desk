@@ -1,0 +1,72 @@
+﻿<Window x:Class="eNote_desk.Wins.SignUp"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:eNote_desk.Wins"
+        mc:Ignorable="d"
+        Title="Регистрация" Height="650" Width="550" MinHeight="650" MinWidth="550">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="90"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid Background="#232331">
+                <TextBlock FontSize="50" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Width="300" Text="E-NOTe"></TextBlock>
+            </Grid>
+        </Grid>
+        <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock FontSize="30" TextAlignment="Center" Text="Регистрация" Width="400" Height="40"></TextBlock>
+        </StackPanel>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackPanel Margin="20 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1">
+                <TextBlock VerticalAlignment="Center" Margin="0 8 0 8" Text="Фамилия"></TextBlock>
+                <TextBlock VerticalAlignment="Center" Margin="0 8 0 8" Text="Имя"></TextBlock>
+                <TextBlock VerticalAlignment="Center" Margin="0 8 0 8" Text="Отчество"></TextBlock>
+                <TextBlock VerticalAlignment="Center" Margin="0 8 0 8" Text="Телефон"></TextBlock>
+                <TextBlock VerticalAlignment="Center" Margin="0 8 0 8" Text="Mail"></TextBlock>
+                <TextBlock VerticalAlignment="Center" Margin="0 8 0 8" Text="Никнейм"></TextBlock>
+                <TextBlock VerticalAlignment="Center" Margin="0 8 0 8" Text="Логин"></TextBlock>
+                <TextBlock VerticalAlignment="Center" Margin="0 8 0 8" Text="Пароль"></TextBlock>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0">
+                <TextBox Text="{Binding Account.Surname, ValidatesOnDataErrors=True}" Height="22" Margin="0 3 0 10" Name="tbSurname" ></TextBox>
+                <TextBox Text="{Binding Account.Name, ValidatesOnDataErrors=True}" Height="22" Margin="0 2 0 10" Name="tbName" ></TextBox>
+                <TextBox Text="{Binding Account.Fathername, ValidatesOnDataErrors=True}" Height="22" Margin="0 0 0 10" Name="tbPatronymic" ></TextBox>
+                <TextBox Text="{Binding AccountData.Phone, ValidatesOnDataErrors=True}" Height="22" Margin="0 0 0 10" Name="tbPhone" ></TextBox>
+                <TextBox Text="{Binding AccountData.Email, ValidatesOnDataErrors=True}" Height="22" Margin="0 2 0 10" Name="tbEmail" ></TextBox>
+                <TextBox Text="{Binding Account.Nickname, ValidatesOnDataErrors=True}" Height="22" Margin="0 3 0 10" Name="tbNickname" ></TextBox>
+                <TextBox Text="{Binding AccountData.Username, ValidatesOnDataErrors=True}" Height="22" Margin="0 0 0 10" Name="tbLogin" ></TextBox>
+                <TextBox Text="{Binding AccountData.Password, ValidatesOnDataErrors=True}" Margin="0 2 0 10" Height="22" Name="pbPassword"></TextBox>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="3">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Button Template="{DynamicResource AcceptButton}" Command="{Binding PostSignUpClick}" Name="btnAuthorization" Background="#6CA103" Margin="0 10" Width="150" Height="30" Content="Завершить">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="6"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+                <Button Template="{DynamicResource DeclineButton}" Name="btnBack" Width="150" Background="#903131" Margin="0 10" Height="30" Content="Отменить" Click="btnBack_Click">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="6"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="4" Background="#232331"/>
+    </Grid>
+</Window>
